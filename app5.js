@@ -90,4 +90,38 @@ app.get("/janken", (req, res) => {
   res.render( 'janken', display );
 });
 
+// サイコロゲーム
+app.get("/roll", (req, res) => {
+  let guess = Number(req.query.guess); 
+  const diceRoll = Math.floor(Math.random() * 6) + 1; 
+  let result = '';
+
+  if (guess === diceRoll) {
+    result = "アタリ";
+  } else {
+    result = "ハズレ";
+  }
+
+  res.render('roll', { guess: guess, diceRoll: diceRoll, result: result });
+});
+
+// 数字当てるゲーム
+let targetNumber = Math.floor(Math.random() * 100) + 1;
+
+app.get("/number", (req, res) => {
+  let userGuess = Number(req.query.number); 
+  let feedback = '';
+
+  if (userGuess > targetNumber) {
+    feedback = "低い";
+  } else if (userGuess < targetNumber) {
+    feedback = "高い";
+  } else {
+    feedback = "正解！";
+    targetNumber = Math.floor(Math.random() * 100) + 1; 
+  }
+
+  res.render('number', { userGuess: userGuess, feedback: feedback });
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

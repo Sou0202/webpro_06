@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日の運勢</title>
+</head>
+<body>
+  <h1>今日の運勢</h1>
+  <button onclick="getLuck()">運勢を占う</button>
+
+
+  <h2 id="result-luck"></h2>
+  <p id="result-number"></p>
+
+  <script>
+    function getLuck() {
+     
+      fetch("/luck")
+        .then(response => response.json())
+        .then(data => {
+         
+          document.getElementById("result-luck").textContent = `あなたの運勢は「${data.luck}」です。`;
+          document.getElementById("result-number").textContent = `運勢番号: ${data.number}`;
+        })
+        .catch(error => {
+          console.error("エラー:", error);
+          document.getElementById("result-luck").textContent = "エラーが発生しました。";
+        });
+    }
+  </script>
+</body>
+</html>
