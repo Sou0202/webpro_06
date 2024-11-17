@@ -20,8 +20,7 @@ git push
 app5.js　|　プログラム本体
 public/Apple_logo_black.svg | アイコン画像表示の開始画面
 views/icon.ejs | アイコン画像表示のテンプレートファイル |
-pubkic/luck.ejs | 運勢占いの開始画面 |
-views/luck.html | 運勢占いのテンプレートファイル|
+pubkic/luck.ejs | 運勢占いのプログラム |
 public/janken.html | じゃんけんの開始画面
 views/janken.ejs | プログラムのテンプレート
 public/number.html | 数当てゲームの開始画面
@@ -33,8 +32,6 @@ views/roll.ejs | プログラムのテンプレート
 ### アイコン画像表示
 サーバを立ち上げ,ブラウザでhttp://localhost:8080/public/Apple_logo_black.svg にアクセスするとAppleのロゴマークの画像が表示される.
 
-### 運勢占い
-サーバを立ち上げ,ブラウザでhttp://localhost:8080/public/luck.html にアクセスすると
 
 ### じゃんけん
 サーバを立ち上げ,ブラウザでhttp://localhost:8080/public/janken.html にアクセスし,「グー」「チョキ」「パー」のいずれかを入力画面に入力する.そうすると,コンピュータの出した手に対しての勝ち負けの判定が表示される.また,何戦中何勝したかというデータも表示される.
