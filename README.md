@@ -36,7 +36,7 @@ views/roll.ejs | プログラムのテンプレート
 ### じゃんけん
 サーバを立ち上げ,ブラウザでhttp://localhost:8080/public/janken.html にアクセスし,「グー」「チョキ」「パー」のいずれかを入力画面に入力する.そうすると,コンピュータの出した手に対しての勝ち負けの判定が表示される.また,何戦中何勝したかというデータも表示される.
 
-### 数字当てゲーム
+### 数当てゲーム
 サーバを立ち上げ,ブラウザでhttp://localhost:8080/public/number.html にアクセスすると「1から100までの数字を入力してください」と言う文字の横に数字を入力する画面が表示される.そこに数字を適当に入力すると,コンピュータが指定した数字よりも高いか低いかの判定を出してくれる.そのやりとりを繰り返してコンピュータが指定した数字を当てると言うゲームである.
 
 ### サイコロゲーム
@@ -46,32 +46,79 @@ views/roll.ejs | プログラムのテンプレート
 console.log("Hello");
 ```
 
-1. ```node app5.js```を起動する
-1. Webブラウザでlocalhost:8080/public/janken.htmlにアクセスする
-1. 自分の手を入力する
-
-```mermaid
-flowchart TD;
-開始 --> 終了;
-```
-
+## じゃんけんのフローチャート
 ```mermaid
 flowchart TD;
 
 start["開始"];
 end1["終了"]
-if{"条件に合うか"}
-win["勝ち"]
-loose["負け"]
+if{"じゃんけんぽん"}
+yes["勝ち"]
+no1["負け"]
+cnt["勝利カウント"]
+retray["もう一戦?"]
+no2["やめる"]
+yes2["続ける"]
+battle["試合数カウント"]
 
 start --> if
-if -->|yes| win
-win --> end1
-if -->|no| loose
-loose --> end1
+if -->|yes| yes
+yes --> cnt
+
+if -->|no| no1
+no1 --> if
+no1 --> battle
+
+cnt --> battle
+
+
+battle --> retray
+retray --> yes2 
+retray --> no2 
+yes2 --> if
+no2 --> end1
 ```
 
 
+## 数当てゲームのフローチャート
+```mermaid
+flowchart TD;
+
+start["開始"];
+end1["終了"]
+if{"数字が合っているか"}
+no1["高い"]
+yes["あたり"]
+no2["低い"]
+
+
+start --> if
+if -->|no| no1
+no1 --> if
+if -->|no| no2
+no2 --> if
+if -->|yes| yes
+yes --> end1
+
+```
+## サイコロゲームのフローチャート
+```mermaid
+flowchart TD;
+
+start["開始"];
+end1["終了"]
+if{"サイコロの目が合っているか"}
+yes["あたり"]
+no1["はずれ"]
+
+
+start --> if
+if -->|no| no1
+no1 --> if
+if -->|yes| yes
+yes --> end1
+
+```
 
 
 
