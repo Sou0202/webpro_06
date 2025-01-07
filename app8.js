@@ -44,8 +44,8 @@ app.post("/bbs/:id/like", (req, res) => {
     const post = bbs.find((post) => post.id === postId);
 
     if (post) {
-        // いいねの制限：10を超えないようにする
-        if (post.likes >= 10) {
+        // いいねの制限：100を超えないようにする
+        if (post.likes >= 100) {
             return res.status(400).json({ success: false, error: "Maximum likes reached" });
         }
         post.likes = (post.likes || 0) + 1;
